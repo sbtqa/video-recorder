@@ -4,7 +4,7 @@
     <groupId>ru.sbtqa.tag</groupId>
     <artifactId>video-recorder</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.monte</groupId>
