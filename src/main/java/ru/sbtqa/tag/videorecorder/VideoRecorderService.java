@@ -12,9 +12,9 @@ public class VideoRecorderService {
 
     private static final Logger LOG = LoggerFactory.getLogger(VideoRecorderService.class);
 
-    private final ScreenRecorder screenRecorder;
+    private final VideoRecorder screenRecorder;
 
-    public VideoRecorderService(ScreenRecorder screenRecorder) {
+    public VideoRecorderService(VideoRecorder screenRecorder) {
         this.screenRecorder = screenRecorder;
     }
 

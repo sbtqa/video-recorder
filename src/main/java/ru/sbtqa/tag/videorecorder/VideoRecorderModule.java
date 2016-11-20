@@ -3,27 +3,27 @@ package ru.sbtqa.tag.videorecorder;
 import java.io.File;
 import java.io.IOException;
 
-import org.monte.media.Format;
-import org.monte.media.FormatKeys;
-import org.monte.media.VideoFormatKeys;
-import org.monte.media.math.Rational;
+import ru.sbtqa.monte.media.Format;
+import ru.sbtqa.monte.media.FormatKeys;
+import ru.sbtqa.monte.media.VideoFormatKeys;
+import ru.sbtqa.monte.media.math.Rational;
 
-import static org.monte.media.FormatKeys.EncodingKey;
-import static org.monte.media.FormatKeys.FrameRateKey;
-import static org.monte.media.FormatKeys.KeyFrameIntervalKey;
-import static org.monte.media.FormatKeys.MediaTypeKey;
-import static org.monte.media.FormatKeys.MimeTypeKey;
+import static ru.sbtqa.monte.media.FormatKeys.EncodingKey;
+import static ru.sbtqa.monte.media.FormatKeys.FrameRateKey;
+import static ru.sbtqa.monte.media.FormatKeys.KeyFrameIntervalKey;
+import static ru.sbtqa.monte.media.FormatKeys.MediaTypeKey;
+import static ru.sbtqa.monte.media.FormatKeys.MimeTypeKey;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
-import org.monte.media.FormatKeys.MediaType;
-import static org.monte.media.VideoFormatKeys.CompressorNameKey;
-import static org.monte.media.VideoFormatKeys.DepthKey;
-import static org.monte.media.VideoFormatKeys.HeightKey;
-import static org.monte.media.VideoFormatKeys.QualityKey;
-import static org.monte.media.VideoFormatKeys.WidthKey;
+import ru.sbtqa.monte.media.FormatKeys.MediaType;
+import static ru.sbtqa.monte.media.VideoFormatKeys.CompressorNameKey;
+import static ru.sbtqa.monte.media.VideoFormatKeys.DepthKey;
+import static ru.sbtqa.monte.media.VideoFormatKeys.HeightKey;
+import static ru.sbtqa.monte.media.VideoFormatKeys.QualityKey;
+import static ru.sbtqa.monte.media.VideoFormatKeys.WidthKey;
 
 public class VideoRecorderModule {
 
@@ -49,7 +49,7 @@ public class VideoRecorderModule {
         QUALITY_RATIO = qualityRatio;
     }
 
-    public ScreenRecorder provideScreenRecorder() {
+    public VideoRecorder provideScreenRecorder() {
         GraphicsConfiguration gc = GraphicsEnvironment
                 .getLocalGraphicsEnvironment()
                 .getDefaultScreenDevice()
@@ -65,9 +65,9 @@ public class VideoRecorderModule {
         int screenRate = FRAME_RATE_PER_SEC;
         long maxRecordingTime = MAX_RECORDING_TIME_SECS;
 
-        ScreenRecorderImpl sr;
+        VideoRecorderImpl sr;
         try {
-            sr = new ScreenRecorderImpl(gc, gc.getBounds(),
+            sr = new VideoRecorderImpl(gc, gc.getBounds(),
                     getFileFormat(mimeType),
                     getOutputFormatForScreenCapture(videoFormatName, compressorName, outputDimension,
                             bitDepth, quality, screenRate),

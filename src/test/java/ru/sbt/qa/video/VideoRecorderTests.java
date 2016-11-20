@@ -5,7 +5,6 @@
 package ru.sbt.qa.video;
 
 
-import ru.sbtqa.tag.videorecorder.ScreenRecorder;
 import ru.sbtqa.tag.videorecorder.VideoRecorderService;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +12,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.verify;
+import ru.sbtqa.tag.videorecorder.VideoRecorder;
 
 public class VideoRecorderTests {
 
     @Mock
-    ScreenRecorder screenRecorder;
+    VideoRecorder screenRecorder;
     private VideoRecorderService videoRecorder;
 
     @Before
@@ -46,7 +46,7 @@ public class VideoRecorderTests {
         verify(screenRecorder).saveAs("", requestedVideoFileName);
     }
 
-    private VideoRecorderService newVideoRecorderInstance(ScreenRecorder screenRecorder) {
+    private VideoRecorderService newVideoRecorderInstance(VideoRecorder screenRecorder) {
         VideoRecorderService videoRecorder = new VideoRecorderService(screenRecorder);
         return videoRecorder;
     }

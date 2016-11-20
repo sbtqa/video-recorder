@@ -2,7 +2,7 @@ package ru.sbtqa.tag.videorecorder;
 
 import java.io.IOException;
 
-public interface ScreenRecorder {
+public interface VideoRecorder {
 
     public void start() throws IOException;
 

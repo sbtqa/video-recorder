@@ -6,17 +6,17 @@ import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 
-import org.monte.media.Format;
-import org.monte.media.Registry;
+import ru.sbtqa.monte.media.Format;
+import ru.sbtqa.monte.media.Registry;
 
-public class ScreenRecorderImpl extends org.monte.screenrecorder.ScreenRecorder implements ScreenRecorder {
+public class VideoRecorderImpl extends ru.sbtqa.monte.screenrecorder.ScreenRecorder implements VideoRecorder {
 
     private final String TEMP_FILENAME_WITHOUT_EXTENSION = "currentRecording_" + System.currentTimeMillis();
     private final File TEMP_MOVIE_FOLDER;
 
     private String currentTempExtension;
 
-    public ScreenRecorderImpl(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
+    public VideoRecorderImpl(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
                               Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder)
             throws IOException, AWTException {
         super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
