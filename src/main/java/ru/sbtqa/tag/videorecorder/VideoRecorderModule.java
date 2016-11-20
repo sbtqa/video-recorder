@@ -49,7 +49,7 @@ public class VideoRecorderModule {
         QUALITY_RATIO = qualityRatio;
     }
 
-    public TuentiScreenRecorder provideScreenRecorder() {
+    public ScreenRecorder provideScreenRecorder() {
         GraphicsConfiguration gc = GraphicsEnvironment
                 .getLocalGraphicsEnvironment()
                 .getDefaultScreenDevice()
@@ -65,9 +65,9 @@ public class VideoRecorderModule {
         int screenRate = FRAME_RATE_PER_SEC;
         long maxRecordingTime = MAX_RECORDING_TIME_SECS;
 
-        CustomScreenRecorder sr;
+        ScreenRecorderImpl sr;
         try {
-            sr = new CustomScreenRecorder(gc, gc.getBounds(),
+            sr = new ScreenRecorderImpl(gc, gc.getBounds(),
                     getFileFormat(mimeType),
                     getOutputFormatForScreenCapture(videoFormatName, compressorName, outputDimension,
                             bitDepth, quality, screenRate),

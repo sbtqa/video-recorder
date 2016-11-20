@@ -5,7 +5,7 @@
 package ru.sbt.qa.video;
 
 
-import ru.sbtqa.tag.videorecorder.TuentiScreenRecorder;
+import ru.sbtqa.tag.videorecorder.ScreenRecorder;
 import ru.sbtqa.tag.videorecorder.VideoRecorderService;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,38 +17,37 @@ import static org.mockito.Mockito.verify;
 public class VideoRecorderTests {
 
     @Mock
-    TuentiScreenRecorder tuentiScreenRecorder;
+    ScreenRecorder screenRecorder;
     private VideoRecorderService videoRecorder;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        videoRecorder = newVideoRecorderInstance(tuentiScreenRecorder);
+        videoRecorder = newVideoRecorderInstance(screenRecorder);
     }
 
     @Test
     public void shouldStartRecordingWhenAskedToDoSo() throws Exception {
         videoRecorder.start();
 //
-        verify(tuentiScreenRecorder).start();
+        verify(screenRecorder).start();
     }
 
     @Test
     public void shouldStopRecordingWhenAskedToDoSo() throws Exception {
         videoRecorder.stop();
-//
-        verify(tuentiScreenRecorder).stop();
+        verify(screenRecorder).stop();
     }
 
     @Test
     public void shouldSaveVideoRecordedWhenAskedToDoSo() throws Exception {
         String requestedVideoFileName = "whateverTheFileName";
         videoRecorder.save("", requestedVideoFileName);
-        verify(tuentiScreenRecorder).saveAs("", requestedVideoFileName);
+        verify(screenRecorder).saveAs("", requestedVideoFileName);
     }
 
-    private VideoRecorderService newVideoRecorderInstance(TuentiScreenRecorder tuentiScreenRecorder) {
-        VideoRecorderService videoRecorder = new VideoRecorderService(tuentiScreenRecorder);
+    private VideoRecorderService newVideoRecorderInstance(ScreenRecorder screenRecorder) {
+        VideoRecorderService videoRecorder = new VideoRecorderService(screenRecorder);
         return videoRecorder;
     }
 }

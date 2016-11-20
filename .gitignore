@@ -1,1 +1,3 @@
-target
+target/
+Будет удалено .idea/
+Будет удалено video-recorder.iml

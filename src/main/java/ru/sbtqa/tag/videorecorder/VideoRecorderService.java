@@ -12,16 +12,16 @@ public class VideoRecorderService {
 
     private static final Logger LOG = LoggerFactory.getLogger(VideoRecorderService.class);
 
-    private final TuentiScreenRecorder tuentiScreenRecorder;
+    private final ScreenRecorder screenRecorder;
 
-    public VideoRecorderService(TuentiScreenRecorder tuentiScreenRecorder) {
-        this.tuentiScreenRecorder = tuentiScreenRecorder;
+    public VideoRecorderService(ScreenRecorder screenRecorder) {
+        this.screenRecorder = screenRecorder;
     }
 
     public void start() {
         LOG.info("Video recording start request received");
         try {
-            tuentiScreenRecorder.start();
+            screenRecorder.start();
             LOG.info("Video recording started");
         } catch (IOException e) {
             LOG.error("Could not start video recording.", e);
@@ -31,7 +31,7 @@ public class VideoRecorderService {
 
     public void stop() {
         try {
-            tuentiScreenRecorder.stop();
+            screenRecorder.stop();
             LOG.info("Video recording stopped");
         } catch (IOException e) {
             LOG.error("Could not stop video recording.", e);
@@ -42,7 +42,7 @@ public class VideoRecorderService {
         LOG.info("Request to save current video as " + filename + " received");
         String savedFile = null;
         try {
-            savedFile = tuentiScreenRecorder.saveAs(path, filename);
+            savedFile = screenRecorder.saveAs(path, filename);
             LOG.info("Video saved as " + savedFile);
         } catch (IOException e) {
             LOG.error("Could not save video file " + filename + " to destination path " + path, e);

@@ -8,17 +8,16 @@ import java.io.IOException;
 
 import org.monte.media.Format;
 import org.monte.media.Registry;
-import org.monte.screenrecorder.ScreenRecorder;
 
-public class CustomScreenRecorder extends ScreenRecorder implements TuentiScreenRecorder {
+public class ScreenRecorderImpl extends org.monte.screenrecorder.ScreenRecorder implements ScreenRecorder {
 
     private final String TEMP_FILENAME_WITHOUT_EXTENSION = "currentRecording_" + System.currentTimeMillis();
     private final File TEMP_MOVIE_FOLDER;
 
     private String currentTempExtension;
 
-    public CustomScreenRecorder(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
-            Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder)
+    public ScreenRecorderImpl(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
+                              Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder)
             throws IOException, AWTException {
         super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
         TEMP_MOVIE_FOLDER = movieFolder;
