@@ -4,7 +4,7 @@ public class VideoRecorderRuntimeException extends RuntimeException {
 
     /**
      * 
-     * @param e  TODO
+     * @param e a {@link java.lang.Throwable} object.
      */
     public VideoRecorderRuntimeException(Throwable e) {
         super(e);
