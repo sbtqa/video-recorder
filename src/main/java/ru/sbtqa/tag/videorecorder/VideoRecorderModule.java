@@ -1,36 +1,34 @@
 package ru.sbtqa.tag.videorecorder;
 
-import java.io.File;
-import java.io.IOException;
-
-import ru.sbtqa.monte.media.Format;
-import ru.sbtqa.monte.media.FormatKeys;
-import ru.sbtqa.monte.media.VideoFormatKeys;
-import ru.sbtqa.monte.media.math.Rational;
-
-import static ru.sbtqa.monte.media.FormatKeys.EncodingKey;
-import static ru.sbtqa.monte.media.FormatKeys.FrameRateKey;
-import static ru.sbtqa.monte.media.FormatKeys.KeyFrameIntervalKey;
-import static ru.sbtqa.monte.media.FormatKeys.MediaTypeKey;
-import static ru.sbtqa.monte.media.FormatKeys.MimeTypeKey;
-
 import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+import ru.sbtqa.monte.media.Format;
+import ru.sbtqa.monte.media.FormatKeys;
+import static ru.sbtqa.monte.media.FormatKeys.EncodingKey;
+import static ru.sbtqa.monte.media.FormatKeys.FrameRateKey;
+import static ru.sbtqa.monte.media.FormatKeys.KeyFrameIntervalKey;
 import ru.sbtqa.monte.media.FormatKeys.MediaType;
+import static ru.sbtqa.monte.media.FormatKeys.MediaTypeKey;
+import static ru.sbtqa.monte.media.FormatKeys.MimeTypeKey;
+import ru.sbtqa.monte.media.VideoFormatKeys;
 import static ru.sbtqa.monte.media.VideoFormatKeys.CompressorNameKey;
 import static ru.sbtqa.monte.media.VideoFormatKeys.DepthKey;
 import static ru.sbtqa.monte.media.VideoFormatKeys.HeightKey;
 import static ru.sbtqa.monte.media.VideoFormatKeys.QualityKey;
 import static ru.sbtqa.monte.media.VideoFormatKeys.WidthKey;
+import ru.sbtqa.monte.media.math.Rational;
+import ru.sbtqa.tag.videorecorder.exceptions.VideoRecorderRuntimeException;
 
 public class VideoRecorderModule {
 
     private static final int MAX_RECORDING_TIME_SECS = Integer.MAX_VALUE;
-    private static int FRAME_RATE_PER_SEC = 2;
-    private static int BIT_DEPTH = 16;
-    private static float QUALITY_RATIO = 0.7f;
+    private static int frameRatePerSec = 2;
+    private static int bitDepth = 16;
+    private static float qualityRatio = 0.7f;
     private final String videoFolderPath;
 
     public VideoRecorderModule(String videoFolderPath) {
@@ -38,15 +36,15 @@ public class VideoRecorderModule {
     }
 
     public static void setFrameRatePerSec(int rate) {
-        FRAME_RATE_PER_SEC = rate;
+        frameRatePerSec = rate;
     }
 
-    public static void setBitDepth(int bitDepth) {
-        BIT_DEPTH = bitDepth;
+    public static void setBitDepth(int depth) {
+        bitDepth = depth;
     }
 
-    public static void setQualityRatio(float qualityRatio) {
-        QUALITY_RATIO = qualityRatio;
+    public static void setQualityRatio(float ratio) {
+        qualityRatio = ratio;
     }
 
     public VideoRecorder provideScreenRecorder() {
@@ -60,9 +58,9 @@ public class VideoRecorderModule {
         String videoFormatName = VideoFormatKeys.ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE;
         String compressorName = VideoFormatKeys.COMPRESSOR_NAME_AVI_TECHSMITH_SCREEN_CAPTURE;
         Dimension outputDimension = gc.getBounds().getSize();
-        int bitDepth = BIT_DEPTH;
-        float quality = QUALITY_RATIO;
-        int screenRate = FRAME_RATE_PER_SEC;
+        int depth = bitDepth;
+        float quality = qualityRatio;
+        int screenRate = frameRatePerSec;
         long maxRecordingTime = MAX_RECORDING_TIME_SECS;
 
         VideoRecorderImpl sr;
@@ -70,15 +68,13 @@ public class VideoRecorderModule {
             sr = new VideoRecorderImpl(gc, gc.getBounds(),
                     getFileFormat(mimeType),
                     getOutputFormatForScreenCapture(videoFormatName, compressorName, outputDimension,
-                            bitDepth, quality, screenRate),
+                            depth, quality, screenRate),
                     getMouseFormat(),
                     getAudioFormat(),
                     movieFolder);
             sr.setMaxRecordingTime(maxRecordingTime);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | AWTException e) {
+            throw new VideoRecorderRuntimeException("Failed to create video recorder object", e);
         }
 
         return sr;
