@@ -10,16 +10,16 @@ import org.slf4j.LoggerFactory;
 import ru.sbtqa.monte.media.Format;
 import ru.sbtqa.monte.media.Registry;
 
-public class VideoRecorderImpl extends ru.sbtqa.monte.screenrecorder.ScreenRecorder implements VideoRecorder {
+public class RecorderImpl extends ru.sbtqa.monte.screenrecorder.ScreenRecorder implements Recorder {
 
-    private static final Logger LOG = LoggerFactory.getLogger(VideoRecorderImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RecorderImpl.class);
 
     private final String tempFilenameWithoutExtension = "currentRecording_" + System.currentTimeMillis();
     private final File tempMovieFolder;
 
     private String currentTempExtension;
 
-    public VideoRecorderImpl(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
+    public RecorderImpl(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
           Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder)
           throws IOException, AWTException {
         super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);

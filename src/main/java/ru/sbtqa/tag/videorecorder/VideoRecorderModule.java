@@ -47,7 +47,7 @@ public class VideoRecorderModule {
         qualityRatio = ratio;
     }
 
-    public VideoRecorder provideScreenRecorder() {
+    public Recorder provideScreenRecorder() {
         GraphicsConfiguration gc = GraphicsEnvironment
                 .getLocalGraphicsEnvironment()
                 .getDefaultScreenDevice()
@@ -63,9 +63,9 @@ public class VideoRecorderModule {
         int screenRate = frameRatePerSec;
         long maxRecordingTime = MAX_RECORDING_TIME_SECS;
 
-        VideoRecorderImpl sr;
+        RecorderImpl sr;
         try {
-            sr = new VideoRecorderImpl(gc, gc.getBounds(),
+            sr = new RecorderImpl(gc, gc.getBounds(),
                     getFileFormat(mimeType),
                     getOutputFormatForScreenCapture(videoFormatName, compressorName, outputDimension,
                             depth, quality, screenRate),
