@@ -55,7 +55,7 @@ public class RecorderImpl extends ru.sbtqa.monte.screenrecorder.ScreenRecorder i
 
         File destFile = getDestinationFile(path, filename);
         if (!tempFile.renameTo(destFile)) {
-            LOG.error("Failed to rename file {}", path + filename);
+            LOG.error("Failed to rename file {}", path + File.separator + filename);
         }
         return destFile.getAbsolutePath();
     }

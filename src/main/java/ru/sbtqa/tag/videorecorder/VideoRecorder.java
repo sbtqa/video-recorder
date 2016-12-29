@@ -11,8 +11,8 @@ public class VideoRecorder {
     private static final Logger LOG = LoggerFactory.getLogger(VideoRecorder.class);
 
     private final String DEFAULT_VIDEOS_FOLDER = System.getProperty("java.io.tmpdir");
-    private final String TEMP_FOLDER_PROPERTY_NAME = "videoTempFolder";
-    private final String DST_PATH_PROPERTY_NAME = "videoDestinationPath";
+    private final String TEMP_FOLDER_PROPERTY_NAME = "video.path.temp";
+    private final String DST_PATH_PROPERTY_NAME = "video.path.dest";
     private static VideoRecorder instance;
     private static VideoRecorderModule videoRecorderModule;
     private static VideoRecorderService service;
@@ -22,7 +22,7 @@ public class VideoRecorder {
     private boolean isVideoStarted = false;
 
     public VideoRecorder() throws IOException {
-        videoDestinationPath = Props.get("videoDestinationPath");
+        videoDestinationPath = Props.get(DST_PATH_PROPERTY_NAME);
         if (videoDestinationPath.isEmpty()) {
             throw new IOException("Property " + DST_PATH_PROPERTY_NAME + " was not set in application.properties");
         }

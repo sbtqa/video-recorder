@@ -50,6 +50,18 @@
   </repositories>
   <dependencies>
     <dependency>
+      <groupId>ru.sbtqa</groupId>
+      <artifactId>monte-media</artifactId>
+      <version>1.0.1</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>ru.sbtqa.tag</groupId>
+      <artifactId>qa-utils</artifactId>
+      <version>1.0.2</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
       <groupId>org.monte</groupId>
       <artifactId>screen-recorder</artifactId>
       <version>0.7.7</version>
@@ -70,18 +82,6 @@
       <artifactId>mockito-core</artifactId>
       <version>1.9.5</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ru.sbtqa</groupId>
-      <artifactId>monte-media</artifactId>
-      <version>1.0.0</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>ru.sbtqa.tag</groupId>
-      <artifactId>qa-utils</artifactId>
-      <version>1.0.2</version>
-      <type>jar</type>
     </dependency>
   </dependencies>
   <build>
