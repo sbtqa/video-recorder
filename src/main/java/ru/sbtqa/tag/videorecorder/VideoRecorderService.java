@@ -1,5 +1,6 @@
 package ru.sbtqa.tag.videorecorder;
 
+import java.io.File;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +36,13 @@ public class VideoRecorderService {
     }
 
     public String save(String path, String filename) {
-        LOG.info("Request to save current video as " + filename + " received");
         String savedFile = null;
+        LOG.info("Request to save current video as " + filename + " received");
+        File dir = new File(path);
+        if (!dir.exists()) {
+            LOG.info("The directory at the path \"" + path + "\" does not exist. The directory was created");
+            dir.mkdirs();
+        }
         try {
             savedFile = screenRecorder.saveAs(path, filename);
             LOG.info("Video saved as " + savedFile);
