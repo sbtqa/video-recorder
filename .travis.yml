@@ -8,8 +8,6 @@ before_install:
   - if [ ! -z "$GPG_OWNERTRUST" ]; then echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust; fi
 install:
   - mvn --settings .travis/settings.xml clean install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip -B -V
-script:
-  - mvn --settings .travis/settings.xml org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dsonar.login=$SONAR_TOKEN
 deploy:
   - provider: script
     script: ".travis/deploy.sh"
