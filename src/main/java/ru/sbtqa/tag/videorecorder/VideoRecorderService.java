@@ -16,7 +16,6 @@ public class VideoRecorderService {
     }
 
     public void start() {
-        LOG.info("Video recording start request received");
         try {
             screenRecorder.start();
             LOG.info("Video recording started");
@@ -37,7 +36,6 @@ public class VideoRecorderService {
 
     public String save(String path, String filename) {
         String savedFile = null;
-        LOG.info("Request to save current video as " + filename + " received");
         File dir = new File(path);
         if (!dir.exists()) {
             LOG.info("The directory at the path \"" + path + "\" does not exist. The directory was created");
